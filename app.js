@@ -13,8 +13,8 @@ const User = require('./models/user');
 const path = require('path');
 require('dotenv').config();
 
-const initDB = require('./initDB');
-initDB();
+// const initDB = require('./initDB');
+// initDB();
 
 //Using Dependencies
 // mongoose.connect('mongodb://127.0.0.1:27017/foodup', {
