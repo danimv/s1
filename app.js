@@ -17,7 +17,7 @@ const initDB = require('./initDB');
 initDB();
 
 //Using Dependencies
-mongoose.connect('mongodb://localhost:27017/foodup', {
+mongoose.connect('mongodb://127.0.0.1:27017/foodup', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
