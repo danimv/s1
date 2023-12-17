@@ -38,13 +38,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 // app.use(express.static(path.join(__dirname, 'gr8/public')));
 app.use(methodOverride('_method'));
-app.use(
-  expressSession({
-    secret: 'slfsjfhkdshgkfdsh',
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   expressSession({
+//     secret: 'slfsjfhkdshgkfdsh',
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
 app.use(flash());
 app.use(cookieParser());
