@@ -90,10 +90,10 @@ app.use(require('./routes/userRoute'));
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
-// app.get('/*', (req, res) => {
-//   console.log('Request received:', req.url);
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+app.get('/*', (req, res) => {
+  console.log('Request received:', req.url);
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(process.env.PORT || 3006, () => {
   console.log('Server started at PORT: 3006');
