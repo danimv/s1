@@ -17,11 +17,11 @@ const initDB = require('./initDB');
 initDB();
 
 //Using Dependencies
-mongoose.connect('mongodb://127.0.0.1:27017/foodup', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+// mongoose.connect('mongodb://127.0.0.1:27017/foodup', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+// });
 
 app.use(cors({
   origin: true,
