@@ -1,0 +1,35 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form{
+    display: inline;
+}
+
+
+#background-header {
+    background-image: url('../resources/nature.jpg'); /* Replace with the path to your image file */
+    background-size: cover; /* Adjust the background-size property as needed */
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    height: 15vh; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    color: #fff; /* Text color on top of the background */
+  }
+
+  .background-primary-color{
+    background-color: #5c8c4b;
+    color: white;
+  }
+  .background-secondary-color  {
+    background-color:#66b24a;
+    color: white;
+  }
+
+  

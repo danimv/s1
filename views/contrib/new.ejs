@@ -1,0 +1,108 @@
+<%- include("../partials/header") %>
+<script>
+  $(document).ready(function () {
+    $('select[name="tipus"]').on("change", function () {
+      const selectedType = $(this).val();
+      const typeLabel = $("#unitatLabel");
+      const typeInput = $("#unitat");
+      switch (selectedType) {
+        case "Transport":
+          typeLabel.text("Kilometres");
+          typeInput.val("Kilometres");
+          // typeInput.text("Kilometres");
+          break;
+        case "Reciclar":
+          typeLabel.text("Kilograms");
+          typeInput.val("Kilograms");
+          break;
+        case "Aigua":
+          typeLabel.text("Litres");
+          typeInput.val("Litres");
+          break;
+        case "Electricitat":
+          typeLabel.text("Watts");
+          typeInput.val("Watts");
+          break;
+        default:
+          typeLabel.text("Kilometres");
+          typeInput.val("Kilometres");
+      }
+    });
+  });
+</script>
+<div class="container mt-4">
+  <div class="row">
+    <h1 style="text-align: center">Nova acció</h1>
+
+    <div style="width: 50%; margin: auto auto; text-align: center">
+      <form class="p-2 bg-light border rounded" action="/contrib/new" method="POST" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <select class="form-control custom-select-lg" id="tipus" name="tipus">
+                <option value="" selected></option>
+                <% contribtypes.forEach(option => { %>
+                <option value="<%= option.name %>"><%= option.name %></option>
+                <% }); %>
+              </select>
+              <label for="tipus" class="form-label">Tipus d'acció</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="quantitat" name="quantitat" />
+              <input type="hidden" class="form-control" id="unitat" name="unitat" />
+              <label class="form-label" for="quantitat" id="unitats" name="unitats">Indica els <span id="unitatLabel">Kilometres</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" name="name" />
+              <label for="name" class="form-label">Posa-hi un nom</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" name="description" />
+              <label for="tipus" class="form-label">Descripció breu</label>
+            </div>
+          </div>
+        </div>
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="dateInput" name="dateInput" />
+              <label for="dateInput">Data</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="time" class="form-control" id="timeInput" name="timeInput" />
+              <label for="timeInput">Hora</label>
+            </div>
+          </div>
+        </div>
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" name="lloc" />
+              <label for="tipus" class="form-label">Lloc</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" type="file" name="image" accept="image/*" />
+          <label for="tipus" class="form-label">Imatge</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <button type="submit" class="btn btn-success">Envia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

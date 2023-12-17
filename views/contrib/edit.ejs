@@ -1,0 +1,55 @@
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;">Edita <%= foundFoodData.name %>
+            </h1>
+
+            <div style=" width: 70%; margin: auto auto;">
+                <form class="p-2 bg-light border rounded" action="/contrib/<%= foundFoodData.id %>?_method=PUT "
+                    method="POST" enctype="multipart/form-data">
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="text" value="<%= foundFoodData.name %> " name="name">
+                                <label for="tipus" class="form-label">Nom</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="text"
+                            name="description"><%= foundFoodData.description %> </textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="text" name="lloc"><%= foundFoodData.lloc %> </textarea>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="file" value="<%= foundFoodData.imageName %>" name="image"
+                            accept="image/*">
+
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="tipus" name="tipus">
+                            <option value="recicla" <%=foundFoodData.tipus==='recicla' ? 'selected' : '' %>>Recicla
+                            </option>
+                            <option value="energia" <%=foundFoodData.tipus==='energia' ? 'selected' : '' %>>Energia
+                            </option>
+                            <option value="renova" <%=foundFoodData.tipus==='renova' ? 'selected' : '' %>>Renova
+                            </option>
+                            <option value="neteja" <%=foundFoodData.tipus==='neteja' ? 'selected' : '' %>>Neteja
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Envia</button>
+                    </div>
+                </form>
+                <a href="/contrib/<%= foundFoodData.id %> ">Endarrere</a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <%- include("../partials/footer") %>
