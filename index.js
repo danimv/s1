@@ -49,6 +49,7 @@ const userModel = mongoose.model('user', userSchema);
 
 // API
 app.get('/', (req, res) => {
+  console.log("new request");
   res.send('Server is running');
 });
 //sign up
