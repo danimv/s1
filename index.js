@@ -5,8 +5,17 @@ const dotenv = require('dotenv').config();
 const Stripe = require('stripe');
 
 const app = express();
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+// app.use(cors());
+app.use(cors({
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+app.options('*', cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(express.json({ limit: '10mb' }));
 
 const PORT = process.env.PORT || 8081;
 // mongoose.connection.close();
