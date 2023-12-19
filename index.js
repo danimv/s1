@@ -15,6 +15,8 @@ app.use(cors({
 app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
+app.use(methodOverride('_method'));
 // app.use(express.json({ limit: '10mb' }));
 
 const PORT = process.env.PORT || 8081;
@@ -173,6 +175,11 @@ app.post('/create-checkout-session', async (req, res) => {
   } catch (err) {
     res.status(err.statusCode || 500).json(err.message);
   }
+});
+
+app.get('/*', (req, res) => {
+  console.log('Request received:', req.url);
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => console.log('Server is running at port: ' + PORT));
