@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const Stripe = require('stripe');
+const methodOverride = require('method-override');
 
 const app = express();
 // app.use(cors());
