@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const Stripe = require('stripe');
 const initDB = require('./initDB');
+const contribModel = require('./models/contribModel');
 
 
 const app = express();
@@ -30,8 +31,6 @@ async function connectToDatabase() {
     console.log(err);
   }
 }
-
-
 
 //schema
 const userSchema = mongoose.Schema({
@@ -122,7 +121,7 @@ app.post('/uploadProduct', async (req, res) => {
 // get product
 app.get('/product', async (req, res) => {
   console.log("new product request");
-  const data = await productModel.find({});
+  const data = await contribModel.find({});
   res.send(JSON.stringify(data));
 });
 
