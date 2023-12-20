@@ -1,0 +1,97 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="list-group">
+        <li class="list-group-item"><b> <%= foundFoodData.author.username %> </b></li>
+        <li class="list-group-item"><b> <%= foundFoodData.lloc %> </b></li>
+        <li style="color: green" class="list-group-item">#<b><%= foundFoodData.tipus %> </b></li>
+        <li class="list-group-item"><b><%= foundFoodData.quantitat %> <%= foundFoodData.unitat %></b></li>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="img-thumbnail">
+        <img class="card-img-top" src="/uploads/<%= foundFoodData.imageName %>" alt="" />
+        <div class="caption-full p-4">
+          <div class="d-flex justify-content-between">
+            <h4><a> <%= foundFoodData.name %> </a></h4>
+            <p class="text-justify"><%= foundFoodData.description%></p>
+          </div>
+          
+          <% if (currentUser && foundFoodData.author.id.equals(currentUser.id)) { %>
+          <div class="d-flex justify-content-between p-4">
+            <a class="btn btn-warning" href="/contrib/<%= foundFoodData.id %>/edit ">Edita!</a>
+
+            <form id="delete-form" action="/contrib/<%= foundFoodData.id %>?_method=DELETE" method="POST">
+              <button class="btn btn-danger">Elimina</button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div>
+          <div class="card shadow-0 border" style="background-color: #f0f2f5">
+            <div class="card-body p-4">
+              <div class="form-outline mb-4">
+                <form action="/contrib/<%= foundFoodData.id %>/comments " method="POST">
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="escriu un comentari..." name="comment[text]" />
+                  </div>
+                  <div class="form-group justify-content-center">
+                    <button class="btn btn-outline-secondary">Envia</button>
+                  </div>
+                </form>
+              </div>
+              <% foundFoodData.comments.forEach(function(comment) { %>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p><%= comment.text %></p>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                      <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
+                                                        alt="avatar" width="25" height="25" /> -->
+                      <p class="small mb-0 ms-2"><%= comment.author.username %></p>
+                    </div>
+                    <!-- <div class="d-flex flex-row align-items-center">
+                                                    <p class="small text-muted mb-0">Upvote?</p>
+                                                    <i class="far fa-thumbs-up mx-2 fa-xs text-black"
+                                                        style="margin-top: -0.16rem;"></i>
+                                                    <p class="small text-muted mb-0">3</p>
+                                                </div> -->
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="well">
+                    <div class="float-right">
+                        <a class="btn btn-success" href="/FoodUp/<%= foundFoodData.id %>/comments/new ">Afegeix
+                            comentari</a>
+                    </div>
+                    <br>
+                    <% foundFoodData.comments.forEach(function(comment) { %>
+                        <div class="card-body p-4">
+                            <div class="col-md-12">
+                                <strong>
+                                    <%= comment.author.username %>
+                                </strong>
+                                <span class="pull-right">X days ago</span>
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div> -->
+    </div>
+  </div>
+  <a href="/">Endarrere</a>
+</div>
+
+<%- include("../partials/footer") %>

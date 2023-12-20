@@ -1,0 +1,30 @@
+<%- include("partials/header") %> 
+
+<div class="container">
+    <header class="rounded mb-3 mt-2 justify-content-between align-items-center" id="background-header">        
+            <h2 style="font-size: 250%;">Novetats</h2>     
+            <a style="font-size: 200%; font-weight: bold;" class="btn background-primary-color" href="/contrib/new">Nou +</a>          
+    </header>
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        <% for( let i = 0; i < foodData.length; i++ ) { %>
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="card p-2">
+                    <!-- <img class="card-img-top" src="<%= foodData[i]["imagePath"] %>" > -->
+                    <img class="card-img-top" src="/uploads/<%= foodData[i].imageName %>" >
+                    <div class="card-title d-flex justify-content-between">
+                        <h4><%= foodData[i]["name"] %> </h4>
+                        <p style="color: green;">#<%= foodData[i]["tipus"] %></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                    <p>
+                        <a class="btn background-secondary-color" href="/contrib/<%= foodData[i]["id"] %>" >Més info</a>
+                    </p>
+                    <p><%= foodData[i]["comments"].length %> <i class="fa-regular fa-comment"></i></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

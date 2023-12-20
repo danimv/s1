@@ -1,0 +1,86 @@
+<%- include("../partials/header") %>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Sidebar/Navigation -->
+                <nav class="navbar navbar-expand-md">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="sidebar">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Usuari</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Configuració</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Estadístiques</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <!-- User Information Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <%= userData.username %>
+                        <button class="btn btn-primary btn-success float-right" data-toggle="modal" data-target="#editUserModal">Edit</button>
+                    </div>
+                    <div class="card-body">
+                        <li class="list-group-item">Nom: <b>
+                            <%= userData.nom %>
+                        </b></li>
+                    <li class="list-group-item">Cognoms: <b>
+                            <%= userData.cognom %>
+                        </b></li>
+                        <li class="list-group-item">Correu electrònic: <b>
+                            <%= userData.email %>
+                        </b></li>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Edit User Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for editing user data -->
+                        <form>
+                            <div class="form-group">
+                                <label for="editName">Nom</label>
+                                <input type="text" class="form-control" id="editName" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">Cognoms</label>
+                                <input type="email" class="form-control" id="editEmail" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="editRole">Correu electrònic</label>
+                                <input type="text" class="form-control" id="editRole" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="editRole">Nom usuari</label>
+                                <input type="text" class="form-control" id="editRole" placeholder="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel.lar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer") %>
