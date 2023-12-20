@@ -171,3 +171,4 @@ app.post('/create-checkout-session', async (req, res) => {
 
 app.listen(PORT, () => console.log('Server is running at port: ' + PORT));
 connectToDatabase();
+initDB();
