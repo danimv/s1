@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const Stripe = require('stripe');
-const initDB = require('initDB');
+const initDB = require('./initDB');
 
 
 const app = express();
