@@ -3,24 +3,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const Stripe = require('stripe');
-const methodOverride = require('method-override');
 
 const app = express();
-// app.use(cors());
-app.use(cors({
-  origin: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
-app.options('*', cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
-app.use(methodOverride('_method'));
-// app.use(express.json({ limit: '10mb' }));
+app.use(cors());
+app.use(express.json({ limit: "10mb" }));
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8082;
 // mongoose.connection.close();
 mongoose.set('strictQuery', false);
 async function connectToDatabase() {
@@ -61,7 +49,7 @@ const userModel = mongoose.model('user', userSchema);
 
 // API
 app.get('/', (req, res) => {
-  console.log("new request");
+  console.log("home");
   res.send('Server is running');
 });
 //sign up
@@ -131,6 +119,7 @@ app.post('/uploadProduct', async (req, res) => {
 
 // get product
 app.get('/product', async (req, res) => {
+  console.log("new product request");
   const data = await productModel.find({});
   res.send(JSON.stringify(data));
 });
@@ -176,11 +165,6 @@ app.post('/create-checkout-session', async (req, res) => {
   } catch (err) {
     res.status(err.statusCode || 500).json(err.message);
   }
-});
-
-app.get('/*', (req, res) => {
-  console.log('Request received:', req.url);
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => console.log('Server is running at port: ' + PORT));
